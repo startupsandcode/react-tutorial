@@ -1,5 +1,7 @@
-import Container from 'react-bootstrap/Container';
-
+import Container from 'react-bootstrap/Container'
+import Stack from 'react-bootstrap/Stack'
+import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 export default function App() {
 	const posts = [
 		{
@@ -21,22 +23,29 @@ export default function App() {
 	]
 
 	return (
-		<Container fluid>
-			<h1>Microblog</h1>
-			{posts.length === 0 ? (
-				<p>No posts yet</p>
-			) : (
-				posts.map((post) => {
-					return (
-						<p key={post.id}>
-							<b>{post.author.username}</b> &mdash;{' '}
-							<i>{post.timestamp}</i>
-							<br />
-							{post.text}
-						</p>
-					)
-				})
-			)}
+		<Container fluid className='App'>
+			<Header />
+			<Container>
+				<Stack direction='horizontal'>
+					<Sidebar />
+					<Container>
+					{posts.length === 0 ? (
+						<p>No posts yet</p>
+					) : (
+						posts.map((post) => {
+							return (
+								<p key={post.id}>
+									<b>{post.author.username}</b> &mdash;{' '}
+									<i>{post.timestamp}</i>
+									<br />
+									{post.text}
+								</p>
+							)
+						})
+					)}
+					</Container>
+				</Stack>
+			</Container>
 		</Container>
 	)
 }

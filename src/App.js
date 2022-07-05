@@ -1,51 +1,23 @@
 import Container from 'react-bootstrap/Container'
-import Stack from 'react-bootstrap/Stack'
 import Header from './components/Header'
-import Sidebar from './components/Sidebar'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import FeedPage from './pages/FeedPage'
+import ExplorePage from './pages/ExplorePage'
+import LoginPage from './pages/LoginPage'
+import UserPage from './pages/UserPage'
 export default function App() {
-	const posts = [
-		{
-			id: 1,
-			text: 'Hello World',
-			timestamp: 'a minute ago',
-			author: {
-				username: 'John',
-			},
-		},
-		{
-			id: 2,
-			text: 'Hello Mars',
-			timestamp: 'a minute ago',
-			author: {
-				username: 'Susie',
-			},
-		},
-	]
-
 	return (
 		<Container fluid className='App'>
-			<Header />
-			<Container>
-				<Stack direction='horizontal'>
-					<Sidebar />
-					<Container>
-					{posts.length === 0 ? (
-						<p>No posts yet</p>
-					) : (
-						posts.map((post) => {
-							return (
-								<p key={post.id}>
-									<b>{post.author.username}</b> &mdash;{' '}
-									<i>{post.timestamp}</i>
-									<br />
-									{post.text}
-								</p>
-							)
-						})
-					)}
-					</Container>
-				</Stack>
-			</Container>
+			<BrowserRouter>
+				<Header />
+				<Routes>
+					<Route path='/' element={<FeedPage />} />
+					<Route path='/explore' element={<ExplorePage />} />
+					<Route path='/user/:username' element={<UserPage />} />
+					<Route path='/login' element={<LoginPage />} />
+					<Route path='*' element={ <Navigate to='/' /> } />
+				</Routes>
+			</BrowserRouter>
 		</Container>
 	)
 }

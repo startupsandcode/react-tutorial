@@ -34,3 +34,26 @@
 .Sidebar .nav-item .active{
 	background-color: #def;
 }
+
+.Content{
+	margin-top: 10px;
+}
+
+.Post{
+	align-items: start;
+	padding-top: 5px;
+	border-bottom: 1px solid #ddd;
+}
+
+.Post:hover{
+	background-color: #eee;
+}
+
+.Post a {
+	color: #14c;
+	text-decoration: none;
+}
+
+.Post a:visited{
+	color: #14c;
+}

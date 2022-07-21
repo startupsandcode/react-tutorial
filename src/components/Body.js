@@ -3,10 +3,10 @@ import Stack from 'react-bootstrap/Stack'
 import Sidebar from './Sidebar'
 export default function Body({ sidebar, children }) {
 	return (
-		<Container>
+		<Container className='Body'>
 			<Stack direction='horizontal'>
 				{ sidebar && <Sidebar /> }
-				<Container>
+				<Container className='Content'>
 					{children}
 				</Container>
 			</Stack>

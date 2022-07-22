@@ -6,7 +6,7 @@ import Stack from 'react-bootstrap/Stack'
 import Image from 'react-bootstrap/Image'
 import TimeAgo from '../components/TimeAgo'
 import Spinner from 'react-bootstrap/Spinner'
-
+import Posts from '../components/Posts'
 export default function UserPage() {
 	const { username } = useParams()
 	const [user, setUser] = useState()
@@ -17,7 +17,7 @@ export default function UserPage() {
 			const response = await api.get(`/users/${username}`)
 			setUser(response.ok ? response.body : null)
 		})()
-	}, [])
+	}, [api, username])
 
 	return (
 		<Body sidebar>
@@ -28,6 +28,7 @@ export default function UserPage() {
 					{user === null ? (
 						<p>User not found.</p>
 					) : (
+						<>
 						<Stack direction='horizontal' gap={4}>
 							<Image
 								src={user.avatar_url + '&s=128'}
@@ -46,6 +47,8 @@ export default function UserPage() {
 								</p>
 							</div>
 						</Stack>
+						<Posts content={user.id} />
+						</>
 					)}
 				</>
 			)}

@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react'
 import { Spinner } from 'react-bootstrap'
 import Post from './Post'
+import { useApi } from '../contexts/ApiProvider'
+
 const BASE_API_URL = process.env.REACT_APP_BASE_API_URL
-console.log(BASE_API_URL)
+
 export default function Posts() {
 	const [posts, setPosts] = useState()
-	const [loading, setLoading] = useState(true)
+	const api = useApi()
 
 	useEffect(() => {
 		(async () => {
-			const response = await fetch(`${BASE_API_URL}/api/feed`)
+			const response = await api.get('/feed')
 			if (response.ok) {
-				const results = await response.json()
-				setPosts(results.data)
+				setPosts(response.body.data)
 			} else {
 				setPosts(null)
 			}
@@ -29,11 +30,13 @@ export default function Posts() {
 						<p>Could not retrieve blog posts</p>
 					) : (
 						<>
-						{posts.length === 0 ?
-							<p>No posts yet</p>
-						:
-						posts.map((post) => <Post key={post.id} post={post} />)}
-						}
+							{posts.length === 0 ? (
+								<p>No posts yet</p>
+							) : (
+								posts.map((post) => (
+									<Post key={post.id} post={post} />
+								))
+							)}
 						</>
 					)}
 				</>

@@ -12,6 +12,9 @@ import FlashProvider from './contexts/FlashProvider'
 import UserProvider from './contexts/UserProvider'
 import PublicRoute from './components/PublicRoute'
 import PrivateRoute from './components/PrivateRoute'
+import ChangePasswordPage from './pages/ChangePasswordPage'
+import ResetRequestPage from './pages/ResetRequestPage'
+import ResetPage from './pages/ResetPage'
 
 export default function App() {
 	return (
@@ -27,6 +30,22 @@ export default function App() {
 									element={
 										<PublicRoute>
 											<LoginPage />
+										</PublicRoute>
+									}
+								/>
+								<Route
+									path='/reset-request'
+									element={
+										<PublicRoute>
+											<ResetRequestPage />
+										</PublicRoute>
+									}
+								/>
+								<Route
+									path='/reset'
+									element={
+										<PublicRoute>
+											<ResetPage />
 										</PublicRoute>
 									}
 								/>
@@ -58,6 +77,10 @@ export default function App() {
 												<Route
 													path='/edit'
 													element={<EditUserPage />}
+												/>
+												<Route
+													path='/password'
+													element={<ChangePasswordPage />}
 												/>
 												<Route
 													path='*'

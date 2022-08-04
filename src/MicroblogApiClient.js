@@ -16,6 +16,9 @@ export default class MicroblogApiClient {
 				response = await this.requestInternal(options)
 			}
 		}
+		if (response.status >= 500 && this.onError){
+			this.onError(response)
+		}
 		return response
 	}
 

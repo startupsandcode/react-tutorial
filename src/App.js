@@ -6,7 +6,7 @@ import ExplorePage from './pages/ExplorePage'
 import LoginPage from './pages/LoginPage'
 import UserPage from './pages/UserPage'
 import RegistrationPage from './pages/RegistrationPage'
-
+import EditUserPage from './pages/EditUserPage'
 import ApiProvider from './contexts/ApiProvider'
 import FlashProvider from './contexts/FlashProvider'
 import UserProvider from './contexts/UserProvider'
@@ -54,6 +54,10 @@ export default function App() {
 												<Route
 													path='/user/:username'
 													element={<UserPage />}
+												/>
+												<Route
+													path='/edit'
+													element={<EditUserPage />}
 												/>
 												<Route
 													path='*'
